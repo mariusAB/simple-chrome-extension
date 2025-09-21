@@ -1,22 +1,17 @@
-document.body.style.backgroundColor = "blue";
-
-function removeDivByName(name) {
-  const divs = document.querySelectorAll("div");
-  divs.forEach(div => {
-    if (div.getAttribute("name") === name) {
-      div.remove();
-      console.log(`Removed popup`);
-    }
-  });
+function removeNetflixSansDiv() {
+const targetDiv = document.querySelector('div[data-no-focus-lock="true"]');
+if (targetDiv) {
+    console.log('Removing div:', targetDiv);
+    targetDiv.remove();
+}
 }
 
-removeDivByName("netflix-sans-font-loaded");
+removeNetflixSansDiv();
+console.log('DOM changed, checked for div.');
 
 const observer = new MutationObserver(() => {
-  removeDivByName("netflix-sans-font-loaded");
+removeNetflixSansDiv();
+console.log('DOM changed, checked for div.');
 });
 
-observer.observe(document.body, {
-  childList: true,
-  subtree: true
-});
+observer.observe(document.body, { childList: true, subtree: true });
