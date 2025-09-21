@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Netflix popup remover",
+  "version": "1.0",
+  "description": "Removes a specific netflix popup that irritates me",
+  "permissions": ["scripting", "activeTab"],
+  "action": {
+    "default_title": "Click to remove popup"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
