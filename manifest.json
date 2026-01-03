@@ -5,7 +5,10 @@
   "description": "Removes irritating popup",
   "content_scripts": [
     {
-      "matches": ["*://*.netflix.com/*"],
+      "matches": [
+        "*://*.netflix.com/*",
+        "*://escapefromtarkov.fandom.com/*"
+      ],
       "js": ["content.js"],
       "run_at": "document_end"
     }
