@@ -22,8 +22,23 @@ function runRemovals() {
 
 runRemovals();
 
-const observer = new MutationObserver(() => {
-    runRemovals();
+function clickTargetButtons() {
+    const selectors = [
+        'button.ScCoreButton-sc-ocjdkq-0.dUmPtj',
+        'button.ScCoreButton-sc-ocjdkq-0.kJMgAB'
+    ];
+    selectors.forEach(selector => {
+        const btn = document.querySelector(selector);
+        if (btn) {
+            btn.click();
+        }
+    });
+}
+
+const observer = new MutationObserver((mutationsList, observer) => {
+    clickTargetButtons();
 });
 
 observer.observe(document.body, { childList: true, subtree: true });
+
+clickTargetButtons();

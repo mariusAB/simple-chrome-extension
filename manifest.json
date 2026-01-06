@@ -6,8 +6,9 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.netflix.com/*",
-        "*://escapefromtarkov.fandom.com/*"
+      "*://*.netflix.com/*",
+      "*://escapefromtarkov.fandom.com/*",
+      "*://www.twitch.tv/*"
       ],
       "js": ["content.js"],
       "run_at": "document_end"
