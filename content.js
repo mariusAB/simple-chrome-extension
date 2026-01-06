@@ -24,8 +24,7 @@ runRemovals();
 
 function clickTargetButtons() {
     const selectors = [
-        'button.ScCoreButton-sc-ocjdkq-0.dUmPtj',
-        'button.ScCoreButton-sc-ocjdkq-0.kJMgAB'
+        'button.ScCoreButton-sc-ocjdkq-0.dUmPtj'
     ];
     selectors.forEach(selector => {
         const btn = document.querySelector(selector);
