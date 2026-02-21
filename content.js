@@ -1,43 +1,65 @@
-function removeNetflixSansDiv() {
-    const targetDiv = document.querySelector('div[data-no-focus-lock="true"]');
-    if (targetDiv) {
-        console.log('Removing Netflix popup div:', targetDiv);
-        targetDiv.remove();
-    }
-}
+(function () {
+    'use strict';
 
-function removeBtSoftwallDivs() {
-    const tarkovDivs = document.querySelectorAll('[id="bt-softwall"], .bt-softwall');
-    tarkovDivs.forEach(div => {
-        console.log('Removing bt-softwall div:', div);
-        div.remove();
-    });
-}
-
-function runRemovals() {
-    removeNetflixSansDiv();
-    removeBtSoftwallDivs();
-    console.log('DOM changed, checked for target divs.');
-}
-
-runRemovals();
-
-function clickTargetButtons() {
-    const selectors = [
-        'button.ScCoreButton-sc-ocjdkq-0.dUmPtj'
-    ];
-    selectors.forEach(selector => {
-        const btn = document.querySelector(selector);
-        if (btn) {
-            btn.click();
+    function removeNetflixSansDiv() {
+        const targetDiv = document.querySelector('div[data-no-focus-lock="true"]');
+        if (targetDiv) {
+            console.log('Removing Netflix popup div:', targetDiv);
+            targetDiv.remove();
         }
-    });
-}
+    }
 
-const observer = new MutationObserver((mutationsList, observer) => {
-    clickTargetButtons();
-});
+    function removeBtSoftwallDivs() {
+        const softwallDivs = document.querySelectorAll('#bt-softwall, .bt-softwall');
+        softwallDivs.forEach(div => {
+            console.log('Removing bt-softwall div:', div);
+            div.remove();
+        });
+    }
 
-observer.observe(document.body, { childList: true, subtree: true });
+    function clickTargetButtons() {
+        const selectors = [
+            'button.ScCoreButton-sc-ocjdkq-0.dUmPtj'
+        ];
 
-clickTargetButtons();
+        selectors.forEach(selector => {
+            const button = document.querySelector(selector);
+            if (button) {
+                button.click();
+                console.log('Clicked button:', button);
+            }
+        });
+    }
+
+    function handleDomChanges() {
+        removeNetflixSansDiv();
+        removeBtSoftwallDivs();
+        clickTargetButtons();
+    }
+
+    function startObserver() {
+        if (!document.body) {
+            return;
+        }
+
+        const observer = new MutationObserver(() => {
+            handleDomChanges();
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+
+        handleDomChanges();
+
+        console.log('MutationObserver started.');
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', startObserver);
+    } else {
+        startObserver();
+    }
+
+})();

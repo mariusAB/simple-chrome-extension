@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Netflix popup remover",
   "version": "1.0",
-  "description": "Removes irritating popup",
+  "description": "Removes some irritating stuff",
   "content_scripts": [
     {
       "matches": [
